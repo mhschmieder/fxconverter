@@ -7,7 +7,7 @@ Eclipse and NetBeans related support files are included as they are generic and 
 
 The Javadocs are 100% compliant and complete, but I am still learning how to publish those at the hosting site that I think is part of Maven Central, as it is a bad idea to bloat a GitHub project with such files and to complicate repository changes (just as with binary files and archices). Hopefully later tonight!
 
-This projects depends on my GraphicsToolkit and EpsToolkit libraries, as well as depending on Object Refinery's JFreeSVG and Orson PDF libraries, along with the JFXConverter library, and is marked as such in the Maven POM file.
+This projects depends on my GraphicsToolkit and EpsToolkit libraries, as well as depending on Object Refinery's JFreeSVG and JFreePDF libraries, along with the JFXConverter library, and is marked as such in the Maven POM file.
 
 Please note that for now my forks must be used for both external dependencies, as I had to modify the POM in order to specify Java 1.8 vs. Java 11.
 
