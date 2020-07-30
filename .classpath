@@ -19,12 +19,11 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/graphicstoolkit"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/epstoolkit"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/jfreesvg"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/orsonpdf"/>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
+			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/server/deployment/jars/jfxConverter.jar" sourcepath="/server/deployment/jars/jfxConverter-src-0.23.zip">
@@ -34,5 +33,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/server/deployment/jars/MDIUtilities-core-LGPL.jar"/>
 	<classpathentry kind="lib" path="/server/deployment/jars/MDIUtilities-ui-LGPL.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jfreepdf"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
