@@ -26,13 +26,13 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/server/deployment/jars/jfxConverter.jar" sourcepath="/server/deployment/jars/jfxConverter-src-0.23.zip">
+	<classpathentry kind="lib" path="/server/deployment/jars/MDIUtilities-core-LGPL.jar"/>
+	<classpathentry kind="lib" path="/server/deployment/jars/MDIUtilities-ui-LGPL.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jfreepdf"/>
+	<classpathentry kind="lib" path="/server/deployment/jars/jfxConverter-0.23.jar" sourcepath="/server/deployment/jars/jfxConverter-src-0.23.zip">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:platform:/resource/server/deployment/jars/jfxConverter-docs-0.23.zip!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/server/deployment/jars/MDIUtilities-core-LGPL.jar"/>
-	<classpathentry kind="lib" path="/server/deployment/jars/MDIUtilities-ui-LGPL.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/jfreepdf"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
