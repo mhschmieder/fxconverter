@@ -1,7 +1,7 @@
 /**
  * MIT License
  *
- * Copyright (c) 2020 Mark Schmieder
+ * Copyright (c) 2020, 2022 Mark Schmieder
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -110,22 +110,22 @@ public final class FxConverterDemoPane extends BorderPane {
 
         // Line up the "Goodbye" label and the "Maybe" check box top-to-bottom
         // in the top pane using a VBox Layout.
-        final VBox topPane = new VBox( 10d );
+        final VBox topPane = new VBox( 10.0d );
         topPane.getChildren().addAll( goodbyeLabel, maybeCheckBox );
 
         // Line up the "Cruel" label and the "Yes" check box top-to-bottom in
         // the bottom left pane using a VBox Layout.
-        final VBox bottomLeftPane = new VBox( 10d );
+        final VBox bottomLeftPane = new VBox( 10.0d );
         bottomLeftPane.getChildren().addAll( cruelLabel, yesCheckBox );
 
         // Line up the "World" label and the "No" check box top-to-bottom in the
         // bottom right pane using a VBox Layout.
-        final VBox bottomRightPane = new VBox( 10d );
+        final VBox bottomRightPane = new VBox( 10.0d );
         bottomRightPane.getChildren().addAll( worldLabel, noCheckBox );
 
         // Line up the bottom left and bottom right panel side-by-side in the
         // bottom panel container using an HBox Layout.
-        final HBox bottomPane = new HBox( 10d );
+        final HBox bottomPane = new HBox( 10.0d );
         bottomPane.getChildren().addAll( bottomLeftPane, bottomRightPane );
 
         // Stack the top and bottom panel vertically, so that we thoroughly
