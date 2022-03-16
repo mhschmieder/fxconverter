@@ -41,8 +41,8 @@ import org.jfree.svg.SVGGraphics2D;
 import org.jfree.svg.SVGHints;
 import org.jfxconverter.JFXConverter;
 
+import com.mhschmieder.graphicstoolkit.GraphicsUtilities;
 import com.mhschmieder.graphicstoolkit.color.ColorMode;
-import com.mhschmieder.graphicstoolkit.graphics.GraphicsUtilities;
 
 import javafx.geometry.Bounds;
 import javafx.print.Paper;

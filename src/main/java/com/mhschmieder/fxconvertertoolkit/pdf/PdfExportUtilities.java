@@ -43,8 +43,8 @@ import org.jfree.pdf.PDFHints;
 import org.jfree.pdf.Page;
 import org.jfxconverter.JFXConverter;
 
+import com.mhschmieder.graphicstoolkit.GraphicsUtilities;
 import com.mhschmieder.graphicstoolkit.color.ColorMode;
-import com.mhschmieder.graphicstoolkit.graphics.GraphicsUtilities;
 
 import javafx.geometry.Bounds;
 import javafx.print.Paper;
