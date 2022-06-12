@@ -37,10 +37,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-import org.jfree.pdf.PDFDocument;
-import org.jfree.pdf.PDFGraphics2D;
-import org.jfree.pdf.PDFHints;
-import org.jfree.pdf.Page;
+import com.orsonpdf.PDFDocument;
+import com.orsonpdf.PDFGraphics2D;
+import com.orsonpdf.PDFHints;
+import com.orsonpdf.Page;
 import org.jfxconverter.JFXConverter;
 
 import com.mhschmieder.graphicstoolkit.GraphicsUtilities;
