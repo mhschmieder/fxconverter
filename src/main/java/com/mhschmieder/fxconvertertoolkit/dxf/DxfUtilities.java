@@ -1,0 +1,265 @@
+/**
+ * MIT License
+ *
+ * Copyright (c) 2020, 2023 Mark Schmieder
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ * This file is part of the FxConverterToolkit Library
+ *
+ * You should have received a copy of the MIT License along with the
+ * FxConverterToolkit Library. If not, see
+ * <https://opensource.org/licenses/MIT>.
+ *
+ * Project: https://github.com/mhschmieder/fxconvertertoolkit
+ */
+package com.mhschmieder.fxconvertertoolkit.dxf;
+
+import java.io.BufferedReader;
+
+import org.jfxconverter.utils.JFXShapeUtilities;
+
+import com.mhschmieder.commonstoolkit.io.FileStatus;
+import com.mhschmieder.fxdxftoolkit.physics.DxfDistanceUnit;
+import com.mhschmieder.fxdxftoolkit.reader.DxfLoader;
+import com.mhschmieder.fxdxftoolkit.reader.DxfReaderException;
+import com.mhschmieder.fxdxftoolkit.structure.DxfDocument;
+import com.mhschmieder.fxgraphicstoolkit.paint.ColorUtilities;
+import com.mhschmieder.graphicstoolkit.DrawMode;
+import com.mhschmieder.graphicstoolkit.shape.AttributedShapeContainer;
+import com.mhschmieder.physicstoolkit.DistanceUnit;
+
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Shape;
+
+/**
+ * This is a utility class for dealing with conversions of information in the
+ * DXF domain to JavaFX and other standard graphics toolkits for Java.
+ */
+public final class DxfUtilities {
+
+    /**
+     * This method converts a parsed DXF file structure from DXF Entities and
+     * Blocks into JavaFX Shapes as Scene Graph Nodes. It presumes that the DXF
+     * Loader has already been run and is populated with parsed DXF entities.
+     */
+    public static DxfShapeGroup convertToFxShapes( final DxfLoader dxfLoader ) {
+        // Convert the DXF Distance Unit to our supported subset.
+        final DxfDistanceUnit dxfDistanceUnit = dxfLoader.getDistanceUnit();
+        final DistanceUnit importedGeometryDistanceUnit = DxfUtilities
+                .getDistanceUnit( dxfDistanceUnit );
+
+        // Query the Drawing Limits stored with the DXF document.
+        final double importedGeometryLimitsMinX = dxfLoader.getLimitsMinX();
+        final double importedGeometryLimitsMinY = dxfLoader.getLimitsMinY();
+        final double importedGeometryLimitsMaxX = dxfLoader.getLimitsMaxX();
+        final double importedGeometryLimitsMaxY = dxfLoader.getLimitsMaxY();
+
+        // Construct a candidate for the loading of newly imported geometry.
+        final DxfShapeGroup dxfShapeGroup = new DxfShapeGroup( importedGeometryDistanceUnit,
+                                                               importedGeometryLimitsMinX,
+                                                               importedGeometryLimitsMinY,
+                                                               importedGeometryLimitsMaxX,
+                                                               importedGeometryLimitsMaxY );
+
+        try {
+            // Use the DXF Loader to convert the DXF geometry into generic
+            // JavaFX Shapes, using an enhanced Group as a Shape Container.
+            dxfLoader.convertToFxShapes( dxfShapeGroup );
+        }
+        catch ( final OutOfMemoryError oome ) {
+            oome.printStackTrace();
+        }
+        catch ( final Exception e ) {
+            e.printStackTrace();
+        }
+
+        // Invalidate the DXF Document after each Graphics Import or File Open.
+        dxfLoader.invalidateDocument();
+
+        // Return the imported geometry container for downstream clients.
+        return dxfShapeGroup;
+    }
+
+    /**
+     * This method takes an extended Distance Unit set from DXF and converts
+     * it to the smaller subset of Distance Units supported within MSLI
+     * libraries and applications. Unsupported units get mapped to "Unitless".
+     * <p>
+     * TODO: Add an enumeration value for "Unsupported", to treat differently?
+     *
+     * @param dxfDistanceUnit
+     *            The raw Distance Unit from the DXF file
+     * @return The smaller subset of Distance Units supported within MSLI
+     *         libraries and applications
+     */
+    public static DistanceUnit getDistanceUnit( final DxfDistanceUnit dxfDistanceUnit ) {
+        DistanceUnit importedGeometryDistanceUnit = DistanceUnit.UNITLESS;
+        switch ( dxfDistanceUnit ) {
+        case UNITLESS:
+            importedGeometryDistanceUnit = DistanceUnit.UNITLESS;
+            break;
+        case INCHES:
+            importedGeometryDistanceUnit = DistanceUnit.INCHES;
+            break;
+        case FEET:
+            importedGeometryDistanceUnit = DistanceUnit.FEET;
+            break;
+        case MILES:
+            // We do not yet support miles, so make unitless.
+            break;
+        case MILLIMETERS:
+            importedGeometryDistanceUnit = DistanceUnit.MILLIMETERS;
+            break;
+        case CENTIMETERS:
+            importedGeometryDistanceUnit = DistanceUnit.CENTIMETERS;
+            break;
+        case METERS:
+            importedGeometryDistanceUnit = DistanceUnit.METERS;
+            break;
+        case KILOMETERS:
+        case MICROINCHES:
+        case MILS:
+            // We do not yet support statue kilometers, microinches, or mils,
+            // as they are uncommon, but should be reviewed.
+            break;
+        case YARDS:
+            importedGeometryDistanceUnit = DistanceUnit.YARDS;
+            break;
+        case ANGSTROMS:
+        case NANOMETERS:
+        case MICRONS:
+            // NOTE: These units are on a microscopic scale so are irrelevant
+            // to architecture and related fields.
+            break;
+        case DECIMETERS:
+        case DECAMETERS:
+        case HECTOMETERS:
+        case GIGAMETERS:
+            // NOTE: These units are less common but should be reviewed.
+            break;
+        case ASTRONOMICAL_UNITS:
+        case LIGHT_YEARS:
+        case PARSECS:
+            // NOTE: The remaining cases are all unused scientific units.
+            break;
+        default:
+            break;
+        }
+
+        return importedGeometryDistanceUnit;
+    }
+
+    /**
+     * Parse the DXF Blocks and Entities from the referenced file stream.
+     * <p>
+     * NOTE: Actual conversion to JavaFX Shape Nodes is done later, after the
+     * file stream has closed, as it is best not to leave file streams open for
+     * very long.
+     *
+     * @param bufferedReader
+     *            The buffered reader that wraps the DXF file stream
+     * @param dxfLoader
+     *            The DXF Loader to use for loading and parsing the document
+     * @param graphicsImportLoggingEnabled
+     *            Flag for whether the DXF Loader should log specifics of the
+     *            graphics import or not
+     * @return The File Status code, either to indicate errors in parsing
+     */
+    public static FileStatus loadFromDxf( final BufferedReader bufferedReader,
+                                          final DxfLoader dxfLoader,
+                                          final boolean graphicsImportLoggingEnabled ) {
+        try {
+            // Invoke the DXF Pre-loader, for Model Space only (i.e. ignore
+            // Paper Space, as we don't use it and thus it is wasteful).
+            dxfLoader.setCurrentBlock( DxfDocument.MODEL_BLOCK );
+            dxfLoader.loadDocument( bufferedReader, true, graphicsImportLoggingEnabled );
+            if ( !dxfLoader.isDocumentValid() ) {
+                return FileStatus.READ_ERROR;
+            }
+        }
+        catch ( final OutOfMemoryError oome ) {
+            // NOTE: The DXF Parser now folds this into the general error
+            // handler, so that we have a better chance of recovering as well as
+            // reporting the details. So this error is unlikely to occur here.
+            oome.printStackTrace();
+            return FileStatus.OUT_OF_MEMORY_ERROR;
+        }
+        catch ( final DxfReaderException dre ) {
+            dre.printStackTrace();
+            return FileStatus.GRAPHICS_READ_ERROR;
+        }
+        catch ( final Exception e ) {
+            e.printStackTrace();
+            return FileStatus.GRAPHICS_READ_ERROR;
+        }
+
+        return FileStatus.OPENED;
+    }
+
+    /**
+     * This method converts a full container of JavaFX based Shapes into an
+     * equivalent container of AWT based Shapes.
+     *
+     * @param geometryContainerFx
+     *            The original JavaFX Shape container
+     * @param scaleTransform
+     *            If relevant, a scale factor to apply globally to the full
+     *            collection of Shapes
+     * @return The converted AWT Shape container
+     */
+    public static AttributedShapeContainer makeGeometryContainerAwt( final DxfShapeGroup geometryContainerFx,
+                                                                     final java.awt.geom.AffineTransform scaleTransform ) {
+        // Make an AWT Geometry Container to fit all of the entities.
+        final ObservableList< Node > importedGeometry = geometryContainerFx.getChildren();
+        final AttributedShapeContainer geometryContainerAwt =
+                                                            new AttributedShapeContainer( importedGeometry
+                                                                    .size(), scaleTransform );
+
+        // Iterate to convert and copy the entities, but note that this
+        // approach may lose information such as color and line stroke, as
+        // that was not preserved in the new JavaFX Geometry Container.
+        for ( final Node entity : importedGeometry ) {
+            // Use JFXConverter to transcode the JavaFX graphics to AWT.
+            final Shape shape = ( Shape ) entity;
+            final java.awt.Shape shapeAwt = JFXShapeUtilities.getShape( shape );
+
+            // Do not pre-compensate for Block Insert transforms (when
+            // present), due to downstream transform order issues in AWT.
+            final java.awt.geom.AffineTransform transformAwt = JFXShapeUtilities
+                    .getTransform( shape );
+
+            // Add this converted shape to the AWT Geometry Container.
+            final Color dxfColor = ( Color ) shape.getStroke();
+            final java.awt.Color dxfColorAwt = ColorUtilities.getColor( dxfColor );
+            final Paint fill = shape.getFill();
+            final DrawMode drawMode = ( fill != null ) ? DrawMode.FILL : DrawMode.STROKE;
+            geometryContainerAwt.addShape( shapeAwt, dxfColorAwt, drawMode, transformAwt );
+        }
+
+        return geometryContainerAwt;
+    }
+
+    // NOTE: The constructor is disabled, since this is a static class.
+    private DxfUtilities() {}
+
+}// class DxfUtilities
