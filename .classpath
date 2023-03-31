@@ -37,5 +37,8 @@
 	<classpathentry kind="src" path="/fxdxftoolkit"/>
 	<classpathentry kind="src" path="/physicstoolkit"/>
 	<classpathentry kind="src" path="/fxgraphicstoolkit"/>
+	<classpathentry kind="src" path="/fxcadgraphics"/>
+	<classpathentry kind="src" path="/fxcharttoolkit"/>
+	<classpathentry kind="src" path="/fxguitoolkit"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
