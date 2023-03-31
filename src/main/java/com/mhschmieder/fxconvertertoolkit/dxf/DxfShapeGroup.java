@@ -31,7 +31,7 @@
  */
 package com.mhschmieder.fxconvertertoolkit.dxf;
 
-import com.mhschmieder.fxdxftoolkit.geometry.FxShapeContainer;
+import com.mhschmieder.fxdxfparser.geometry.FxShapeContainer;
 import com.mhschmieder.fxgraphicstoolkit.paint.ColorUtilities;
 import com.mhschmieder.fxgraphicstoolkit.shape.ShapeContainer;
 import com.mhschmieder.physicstoolkit.DistanceUnit;

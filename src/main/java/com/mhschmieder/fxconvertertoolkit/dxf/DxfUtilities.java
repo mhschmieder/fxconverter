@@ -36,10 +36,10 @@ import java.io.BufferedReader;
 import org.jfxconverter.utils.JFXShapeUtilities;
 
 import com.mhschmieder.commonstoolkit.io.FileStatus;
-import com.mhschmieder.fxdxftoolkit.physics.DxfDistanceUnit;
-import com.mhschmieder.fxdxftoolkit.reader.DxfLoader;
-import com.mhschmieder.fxdxftoolkit.reader.DxfReaderException;
-import com.mhschmieder.fxdxftoolkit.structure.DxfDocument;
+import com.mhschmieder.fxdxfparser.physics.DxfDistanceUnit;
+import com.mhschmieder.fxdxfparser.reader.DxfLoader;
+import com.mhschmieder.fxdxfparser.reader.DxfReaderException;
+import com.mhschmieder.fxdxfparser.structure.DxfDocument;
 import com.mhschmieder.fxgraphicstoolkit.paint.ColorUtilities;
 import com.mhschmieder.graphicstoolkit.DrawMode;
 import com.mhschmieder.graphicstoolkit.shape.AttributedShapeContainer;
