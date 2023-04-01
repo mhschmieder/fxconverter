@@ -102,15 +102,15 @@ public final class DxfUtilities {
 
     /**
      * This method takes an extended Distance Unit set from DXF and converts
-     * it to the smaller subset of Distance Units supported within MSLI
+     * it to the smaller subset of Distance Units supported within our other
      * libraries and applications. Unsupported units get mapped to "Unitless".
      * <p>
      * TODO: Add an enumeration value for "Unsupported", to treat differently?
      *
      * @param dxfDistanceUnit
      *            The raw Distance Unit from the DXF file
-     * @return The smaller subset of Distance Units supported within MSLI
-     *         libraries and applications
+     * @return The smaller subset of Distance Units supported within our
+     *         other libraries and applications
      */
     public static DistanceUnit getDistanceUnit( final DxfDistanceUnit dxfDistanceUnit ) {
         DistanceUnit importedGeometryDistanceUnit = DistanceUnit.UNITLESS;
