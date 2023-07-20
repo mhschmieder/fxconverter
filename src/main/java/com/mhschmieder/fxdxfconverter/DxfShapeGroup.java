@@ -29,9 +29,9 @@
  *
  * Project: https://github.com/mhschmieder/fxconvertertoolkit
  */
-package com.mhschmieder.fxconvertertoolkit.dxf;
+package com.mhschmieder.fxdxfconverter;
 
-import com.mhschmieder.fxdxfparser.geometry.FxShapeContainer;
+import com.mhschmieder.fxdxfparser.geometry.DxfShapeContainer;
 import com.mhschmieder.fxgraphicstoolkit.paint.ColorUtilities;
 import com.mhschmieder.fxgraphicstoolkit.shape.ShapeContainer;
 import com.mhschmieder.physicstoolkit.DistanceUnit;
@@ -48,7 +48,7 @@ import javafx.scene.transform.Transform;
  * This class is a graphical node container for a collection of bounded geometry
  * represented as a group of generated shapes -- usually from a Graphics Import.
  */
-public final class DxfShapeGroup extends FxShapeContainer implements ShapeContainer {
+public final class DxfShapeGroup extends DxfShapeContainer implements ShapeContainer {
 
     /** Distance Unit, used as the Model Space's Unit of Measurement. */
     private DistanceUnit _distanceUnit;

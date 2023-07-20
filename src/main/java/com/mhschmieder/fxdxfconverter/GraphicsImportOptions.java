@@ -29,7 +29,7 @@
  *
  * Project: https://github.com/mhschmieder/fxconvertertoolkit
  */
-package com.mhschmieder.fxconvertertoolkit.dxf;
+package com.mhschmieder.fxdxfconverter;
 
 import com.mhschmieder.fxcadgraphics.DrawingLimits;
 import com.mhschmieder.physicstoolkit.DistanceUnit;

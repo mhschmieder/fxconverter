@@ -29,17 +29,14 @@
  *
  * Project: https://github.com/mhschmieder/fxconvertertoolkit
  */
-package com.mhschmieder.fxconvertertoolkit.dxf;
+package com.mhschmieder.fxdxfconverter;
 
-import java.io.BufferedReader;
+import java.awt.geom.AffineTransform;
 
 import org.jfxconverter.utils.JFXShapeUtilities;
 
-import com.mhschmieder.commonstoolkit.io.FileStatus;
 import com.mhschmieder.fxdxfparser.physics.DxfDistanceUnit;
 import com.mhschmieder.fxdxfparser.reader.DxfLoader;
-import com.mhschmieder.fxdxfparser.reader.DxfReaderException;
-import com.mhschmieder.fxdxfparser.structure.DxfDocument;
 import com.mhschmieder.fxgraphicstoolkit.paint.ColorUtilities;
 import com.mhschmieder.graphicstoolkit.DrawMode;
 import com.mhschmieder.graphicstoolkit.shape.AttributedShapeContainer;
@@ -55,7 +52,7 @@ import javafx.scene.shape.Shape;
  * This is a utility class for dealing with conversions of information in the
  * DXF domain to JavaFX and other standard graphics toolkits for Java.
  */
-public final class DxfUtilities {
+public final class DxfConverterUtilities {
 
     /**
      * This method converts a parsed DXF file structure from DXF Entities and
@@ -65,7 +62,7 @@ public final class DxfUtilities {
     public static DxfShapeGroup convertToFxShapes( final DxfLoader dxfLoader ) {
         // Convert the DXF Distance Unit to our supported subset.
         final DxfDistanceUnit dxfDistanceUnit = dxfLoader.getDistanceUnit();
-        final DistanceUnit importedGeometryDistanceUnit = DxfUtilities
+        final DistanceUnit importedGeometryDistanceUnit = DxfConverterUtilities
                 .getDistanceUnit( dxfDistanceUnit );
 
         // Query the Drawing Limits stored with the DXF document.
@@ -170,53 +167,6 @@ public final class DxfUtilities {
     }
 
     /**
-     * Parse the DXF Blocks and Entities from the referenced file stream.
-     * <p>
-     * NOTE: Actual conversion to JavaFX Shape Nodes is done later, after the
-     * file stream has closed, as it is best not to leave file streams open for
-     * very long.
-     *
-     * @param bufferedReader
-     *            The buffered reader that wraps the DXF file stream
-     * @param dxfLoader
-     *            The DXF Loader to use for loading and parsing the document
-     * @param graphicsImportLoggingEnabled
-     *            Flag for whether the DXF Loader should log specifics of the
-     *            graphics import or not
-     * @return The File Status code, either to indicate errors in parsing
-     */
-    public static FileStatus loadFromDxf( final BufferedReader bufferedReader,
-                                          final DxfLoader dxfLoader,
-                                          final boolean graphicsImportLoggingEnabled ) {
-        try {
-            // Invoke the DXF Pre-loader, for Model Space only (i.e. ignore
-            // Paper Space, as we don't use it and thus it is wasteful).
-            dxfLoader.setCurrentBlock( DxfDocument.MODEL_BLOCK );
-            dxfLoader.loadDocument( bufferedReader, true, graphicsImportLoggingEnabled );
-            if ( !dxfLoader.isDocumentValid() ) {
-                return FileStatus.READ_ERROR;
-            }
-        }
-        catch ( final OutOfMemoryError oome ) {
-            // NOTE: The DXF Parser now folds this into the general error
-            // handler, so that we have a better chance of recovering as well as
-            // reporting the details. So this error is unlikely to occur here.
-            oome.printStackTrace();
-            return FileStatus.OUT_OF_MEMORY_ERROR;
-        }
-        catch ( final DxfReaderException dre ) {
-            dre.printStackTrace();
-            return FileStatus.GRAPHICS_READ_ERROR;
-        }
-        catch ( final Exception e ) {
-            e.printStackTrace();
-            return FileStatus.GRAPHICS_READ_ERROR;
-        }
-
-        return FileStatus.OPENED;
-    }
-
-    /**
      * This method converts a full container of JavaFX based Shapes into an
      * equivalent container of AWT based Shapes.
      *
@@ -228,7 +178,7 @@ public final class DxfUtilities {
      * @return The converted AWT Shape container
      */
     public static AttributedShapeContainer makeGeometryContainerAwt( final DxfShapeGroup geometryContainerFx,
-                                                                     final java.awt.geom.AffineTransform scaleTransform ) {
+                                                                     final AffineTransform scaleTransform ) {
         // Make an AWT Geometry Container to fit all of the entities.
         final ObservableList< Node > importedGeometry = geometryContainerFx.getChildren();
         final AttributedShapeContainer geometryContainerAwt =
@@ -245,7 +195,7 @@ public final class DxfUtilities {
 
             // Do not pre-compensate for Block Insert transforms (when
             // present), due to downstream transform order issues in AWT.
-            final java.awt.geom.AffineTransform transformAwt = JFXShapeUtilities
+            final AffineTransform transformAwt = JFXShapeUtilities
                     .getTransform( shape );
 
             // Add this converted shape to the AWT Geometry Container.
@@ -260,6 +210,6 @@ public final class DxfUtilities {
     }
 
     // NOTE: The constructor is disabled, since this is a static class.
-    private DxfUtilities() {}
+    private DxfConverterUtilities() {}
 
-}// class DxfUtilities
+}// class DxfConverterUtilities

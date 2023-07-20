@@ -28,7 +28,7 @@
  *
  * Project: https://github.com/mhschmieder/fxconvertertoolkit
  */
-package com.mhschmieder.fxconvertertoolkit.dxf;
+package com.mhschmieder.fxdxfconverter;
 
 import com.mhschmieder.fxcharttoolkit.ChartContentGroup;
 import com.mhschmieder.fxgraphicstoolkit.paint.ColorUtilities;
