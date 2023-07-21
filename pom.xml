@@ -23,7 +23,7 @@
 	</licenses>
 
 	<scm>
-		<url>https://github.com/mhschmieder/fxonvertertoolkit</url>
+		<url>https://github.com/mhschmieder/fxconvertertoolkit</url>
 		<connection>scm:git:git://github.com/mhschmieder/fxconvertertoolkit.git</connection>
 		<developerConnection>scm:git:git@github.com:mhschmieder/fxconvertertoolkit.git</developerConnection>
 	</scm>
@@ -77,12 +77,6 @@
 			<version>0.1-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
-        <dependency>
-            <groupId>com.mhschmieder</groupId>
-            <artifactId>fxdxftoolkit</artifactId>
-            <version>0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
 		<dependency>
 			<groupId>com.orsonpdf</groupId>
 			<artifactId>orsonpdf</artifactId>

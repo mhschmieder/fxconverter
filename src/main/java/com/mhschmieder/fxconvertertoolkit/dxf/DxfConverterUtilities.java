@@ -29,7 +29,7 @@
  *
  * Project: https://github.com/mhschmieder/fxconvertertoolkit
  */
-package com.mhschmieder.fxdxfconverter;
+package com.mhschmieder.fxconvertertoolkit.dxf;
 
 import java.awt.geom.AffineTransform;
 
