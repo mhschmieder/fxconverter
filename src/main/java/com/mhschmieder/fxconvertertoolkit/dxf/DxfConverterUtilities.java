@@ -1,7 +1,7 @@
 /**
  * MIT License
  *
- * Copyright (c) 2020, 2023 Mark Schmieder
+ * Copyright (c) 2020, 2025 Mark Schmieder
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,6 +35,7 @@ import java.awt.geom.AffineTransform;
 
 import org.jfxconverter.utils.JFXShapeUtilities;
 
+import com.mhschmieder.fxdxfconverter.DxfShapeGroup;
 import com.mhschmieder.fxdxfparser.physics.DxfDistanceUnit;
 import com.mhschmieder.fxdxfparser.reader.DxfLoader;
 import com.mhschmieder.fxgraphicstoolkit.paint.ColorUtilities;
