@@ -1,7 +1,7 @@
 /**
  * MIT License
  *
- * Copyright (c) 2020, 2022 Mark Schmieder
+ * Copyright (c) 2020, 2025 Mark Schmieder
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -86,7 +86,9 @@ public final class SvgExportUtilities {
      *
      * @since 1.0
      */
-    public static boolean createDocument( final File file, final Node node, final String title ) {
+    public static boolean createDocument( final File file, 
+                                          final Node node, 
+                                          final String title ) {
         // Use North American Letter as the target page paper size and page
         // orientation. There are no limits on allowed values; units are points
         // (1/72 inch) but it is common to specify Letter Size and then convert.
@@ -134,7 +136,6 @@ public final class SvgExportUtilities {
      *
      * @since 1.0
      */
-    @SuppressWarnings("nls")
     public static boolean createDocument( final File file,
                                           final Node node,
                                           final String title,
@@ -279,5 +280,4 @@ public final class SvgExportUtilities {
 
         return fileSaved;
     }
-
-}// class SvgExportUtilities
+}

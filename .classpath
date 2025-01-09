@@ -52,5 +52,7 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/server/deployment/jars/poi-4.1.2.jar" sourcepath="/server/deployment/jars/poi-src-4.1.2-20200217.zip"/>
+	<classpathentry kind="lib" path="/server/deployment/jars/poi-scratchpad-4.1.2.jar" sourcepath="/server/deployment/jars/poi-src-4.1.2-20200217.zip"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
