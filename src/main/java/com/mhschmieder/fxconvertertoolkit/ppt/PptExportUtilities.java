@@ -32,7 +32,6 @@
 package com.mhschmieder.fxconvertertoolkit.ppt;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
