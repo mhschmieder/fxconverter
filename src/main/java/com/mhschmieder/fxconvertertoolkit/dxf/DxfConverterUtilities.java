@@ -56,9 +56,13 @@ import javafx.scene.shape.Shape;
 public final class DxfConverterUtilities {
 
     /**
-     * This method converts a parsed DXF file structure from DXF Entities and
-     * Blocks into JavaFX Shapes as Scene Graph Nodes. It presumes that the DXF
-     * Loader has already been run and is populated with parsed DXF entities.
+     * Returns a {@link DxfShapeGroup} that contains a parsed DXF file structure
+     * converted from DXF Entities and Blocks into JavaFX Shapes as Scene Graph
+     * Nodes. It presumes that the DXF Loader has already been run and is
+     * populated with parsed DXF entities.
+     * 
+     * @param dxfLoader The DXF Loader that contains the read-in DXF file
+     * @return a {@link DxfShapeGroup} that contains a parsed DXF file structure
      */
     public static DxfShapeGroup convertToFxShapes( final DxfLoader dxfLoader ) {
         // Convert the DXF Distance Unit to our supported subset.
