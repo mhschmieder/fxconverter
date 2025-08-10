@@ -10,7 +10,7 @@
 	<version>0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>FxConverterToolkit</name>
+	<name>fxconvertertoolkit</name>
 	<url>https://github.com/mhschmieder/fxconvertertoolkit</url>
 	<description>A toolkit for converting JavaFX based graphics to various vector graphics output formats such as EPS, SVG and PDF.</description>
 
@@ -93,19 +93,16 @@
 			<groupId>org.jfxconverter</groupId>
 			<artifactId>jfxconverter</artifactId>
 			<version>0.24</version>
-			<scope>compile</scope>
 		</dependency>
         <dependency>
             <groupId>org.mdiutil</groupId>
             <artifactId>mdiutilities-core</artifactId>
             <version>0.24</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.mdiutil</groupId>
             <artifactId>mdiutilities-ui</artifactId>
             <version>0.24</version>
-            <scope>compile</scope>
         </dependency>
 		<dependency>
 			<groupId>com.mhschmieder</groupId>
@@ -202,6 +199,49 @@
 						<goals>
 							<goal>jar-no-fork</goal>
 						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>3.1.1</version>
+				<executions>
+					<execution>
+						<id>install-jfx-jar</id>
+						<phase>validate</phase>
+						<goals><goal>install-file</goal></goals>
+						<configuration>
+							<file>${project.basedir}/dependencies/jfxConverter.jar</file>
+							<groupId>org.jfxconverter</groupId>
+							<artifactId>jfxconverter</artifactId>
+							<version>0.24</version>
+							<packaging>jar</packaging>
+						</configuration>
+					</execution>
+					<execution>
+						<id>install-mdi-core-jar</id>
+						<phase>validate</phase>
+						<goals><goal>install-file</goal></goals>
+						<configuration>
+							<file>${project.basedir}/dependencies/MDIUtilities-core-LGPL.jar</file>
+							<groupId>org.mdiutil</groupId>
+							<artifactId>mdiutilities-core</artifactId>
+							<version>0.24</version>
+							<packaging>jar</packaging>
+						</configuration>
+					</execution>
+					<execution>
+						<id>install-mdi-ui-jar</id>
+						<phase>validate</phase>
+						<goals><goal>install-file</goal></goals>
+						<configuration>
+							<file>${project.basedir}/dependencies/MDIUtilities-ui-LGPL.jar</file>
+							<groupId>org.mdiutil</groupId>
+							<artifactId>mdiutilities-ui</artifactId>
+							<version>0.24</version>
+							<packaging>jar</packaging>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
