@@ -31,24 +31,22 @@
  */
 package com.mhschmieder.fxconvertertoolkit.pdf;
 
-import java.awt.geom.Rectangle2D;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-
-import org.jfxconverter.JFXConverter;
-
 import com.mhschmieder.graphicstoolkit.GraphicsUtilities;
 import com.mhschmieder.graphicstoolkit.color.ColorMode;
 import com.orsonpdf.PDFDocument;
 import com.orsonpdf.PDFGraphics2D;
 import com.orsonpdf.PDFHints;
 import com.orsonpdf.Page;
-
 import javafx.geometry.Bounds;
 import javafx.print.Paper;
 import javafx.scene.Node;
+import org.jfxconverter.JFXConverter;
+
+import java.awt.geom.Rectangle2D;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 /**
  * {@code PdfExportUtilities} is a utility class for methods that export a

@@ -35,6 +35,35 @@
  */
 package org.jfxconverter.drivers.ppt;
 
+import org.apache.commons.math3.util.FastMath;
+import org.apache.poi.ddf.EscherOptRecord;
+import org.apache.poi.ddf.EscherProperties;
+import org.apache.poi.ddf.EscherSimpleProperty;
+import org.apache.poi.hslf.record.FontCollection;
+import org.apache.poi.hslf.usermodel.HSLFAutoShape;
+import org.apache.poi.hslf.usermodel.HSLFFontInfo;
+import org.apache.poi.hslf.usermodel.HSLFFreeformShape;
+import org.apache.poi.hslf.usermodel.HSLFLine;
+import org.apache.poi.hslf.usermodel.HSLFPictureData;
+import org.apache.poi.hslf.usermodel.HSLFPictureShape;
+import org.apache.poi.hslf.usermodel.HSLFShape;
+import org.apache.poi.hslf.usermodel.HSLFSimpleShape;
+import org.apache.poi.hslf.usermodel.HSLFSlide;
+import org.apache.poi.hslf.usermodel.HSLFSlideShow;
+import org.apache.poi.hslf.usermodel.HSLFTextBox;
+import org.apache.poi.hslf.usermodel.HSLFTextRun;
+import org.apache.poi.sl.usermodel.PictureData;
+import org.apache.poi.sl.usermodel.ShapeType;
+import org.apache.poi.sl.usermodel.StrokeStyle;
+import org.apache.poi.sl.usermodel.StrokeStyle.LineDash;
+import org.apache.poi.sl.usermodel.TextParagraph;
+import org.apache.poi.sl.usermodel.VerticalAlignment;
+import org.mdiutil.geom.ClippableShape;
+import org.mdiutil.geom.Polyline2D;
+import org.mdiutil.geom.ShapeNormalizer;
+import org.mdiutil.geom.ShapeUtilities;
+
+import javax.imageio.ImageIO;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Composite;
@@ -78,36 +107,6 @@ import java.text.CharacterIterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import javax.imageio.ImageIO;
-
-import org.apache.commons.math3.util.FastMath;
-import org.apache.poi.ddf.EscherOptRecord;
-import org.apache.poi.ddf.EscherProperties;
-import org.apache.poi.ddf.EscherSimpleProperty;
-import org.apache.poi.hslf.record.FontCollection;
-import org.apache.poi.hslf.usermodel.HSLFAutoShape;
-import org.apache.poi.hslf.usermodel.HSLFFontInfo;
-import org.apache.poi.hslf.usermodel.HSLFFreeformShape;
-import org.apache.poi.hslf.usermodel.HSLFLine;
-import org.apache.poi.hslf.usermodel.HSLFPictureData;
-import org.apache.poi.hslf.usermodel.HSLFPictureShape;
-import org.apache.poi.hslf.usermodel.HSLFShape;
-import org.apache.poi.hslf.usermodel.HSLFSimpleShape;
-import org.apache.poi.hslf.usermodel.HSLFSlide;
-import org.apache.poi.hslf.usermodel.HSLFSlideShow;
-import org.apache.poi.hslf.usermodel.HSLFTextBox;
-import org.apache.poi.hslf.usermodel.HSLFTextRun;
-import org.apache.poi.sl.usermodel.PictureData;
-import org.apache.poi.sl.usermodel.ShapeType;
-import org.apache.poi.sl.usermodel.StrokeStyle;
-import org.apache.poi.sl.usermodel.StrokeStyle.LineDash;
-import org.apache.poi.sl.usermodel.TextParagraph;
-import org.apache.poi.sl.usermodel.VerticalAlignment;
-import org.mdiutil.geom.ClippableShape;
-import org.mdiutil.geom.Polyline2D;
-import org.mdiutil.geom.ShapeNormalizer;
-import org.mdiutil.geom.ShapeUtilities;
 
 /**
  * This implementation of the java.awt.Graphics2D abstract class allows users to

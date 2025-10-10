@@ -31,23 +31,21 @@
  */
 package com.mhschmieder.fxconvertertoolkit.svg;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-
+import com.mhschmieder.graphicstoolkit.GraphicsUtilities;
+import com.mhschmieder.graphicstoolkit.color.ColorMode;
+import javafx.geometry.Bounds;
+import javafx.print.Paper;
+import javafx.scene.Node;
 import org.apache.commons.math3.util.FastMath;
 import org.jfree.graphics2d.svg.SVGGraphics2D;
 import org.jfree.graphics2d.svg.SVGHints;
 import org.jfxconverter.JFXConverter;
 
-import com.mhschmieder.graphicstoolkit.GraphicsUtilities;
-import com.mhschmieder.graphicstoolkit.color.ColorMode;
-
-import javafx.geometry.Bounds;
-import javafx.print.Paper;
-import javafx.scene.Node;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 
 /**
  * {@code SvgExportUtilities} is a utility class for methods that export a

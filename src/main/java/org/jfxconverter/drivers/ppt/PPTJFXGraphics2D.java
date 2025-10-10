@@ -35,11 +35,11 @@
  */
 package org.jfxconverter.drivers.ppt;
 
-import java.awt.Color;
-import java.awt.Shape;
-import java.awt.geom.Rectangle2D;
-import java.util.Stack;
-
+import javafx.geometry.Bounds;
+import javafx.scene.Node;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.InnerShadow;
 import org.apache.poi.ddf.EscherProperties;
 import org.apache.poi.hslf.usermodel.HSLFAutoShape;
 import org.apache.poi.hslf.usermodel.HSLFFreeformShape;
@@ -56,11 +56,10 @@ import org.apache.poi.util.Units;
 import org.jfxconverter.utils.ExtendedGraphics2D;
 import org.mdiutil.geom.ShapeUtilities;
 
-import javafx.geometry.Bounds;
-import javafx.scene.Node;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Effect;
-import javafx.scene.effect.InnerShadow;
+import java.awt.Color;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
+import java.util.Stack;
 
 /**
  * A PPTGraphics2D which is also an ExtendedGraphics2D. Compared to a

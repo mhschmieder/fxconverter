@@ -30,11 +30,10 @@
  */
 package com.mhschmieder.fxconvertertoolkit;
 
-import java.util.List;
-
+import javafx.scene.shape.Shape;
 import org.jfxconverter.utils.JFXShapeUtilities;
 
-import javafx.scene.shape.Shape;
+import java.util.List;
 
 /**
  * {@code ConverterUtilities} is a utility class for methods that help convert

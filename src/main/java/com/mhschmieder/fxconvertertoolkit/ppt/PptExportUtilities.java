@@ -31,13 +31,8 @@
  */
 package com.mhschmieder.fxconvertertoolkit.ppt;
 
-import java.awt.Color;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-
+import javafx.geometry.Bounds;
+import javafx.scene.Node;
 import org.apache.poi.hslf.usermodel.HSLFSlide;
 import org.apache.poi.hslf.usermodel.HSLFSlideShow;
 import org.apache.poi.hslf.usermodel.HSLFTextBox;
@@ -46,8 +41,12 @@ import org.jfxconverter.converters.DefaultConverterListener;
 import org.jfxconverter.drivers.ppt.PPTGraphics2D;
 import org.jfxconverter.drivers.ppt.PPTJFXGraphics2D;
 
-import javafx.geometry.Bounds;
-import javafx.scene.Node;
+import java.awt.Color;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * {@code PptExportUtilities} is a utility class for methods that export a

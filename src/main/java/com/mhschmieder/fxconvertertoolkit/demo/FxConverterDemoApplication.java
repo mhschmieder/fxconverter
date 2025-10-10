@@ -31,11 +31,11 @@
  */
 package com.mhschmieder.fxconvertertoolkit.demo;
 
-import java.util.Map;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+
+import java.util.Map;
 
 /**
  * {@code FxConverterDemoApplication} is an example of a JavaFX-based

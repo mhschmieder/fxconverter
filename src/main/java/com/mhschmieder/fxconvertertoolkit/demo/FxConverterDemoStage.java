@@ -31,12 +31,9 @@
  */
 package com.mhschmieder.fxconvertertoolkit.demo;
 
-import java.io.File;
-
 import com.mhschmieder.fxconvertertoolkit.eps.EpsExportUtilities;
 import com.mhschmieder.fxconvertertoolkit.pdf.PdfExportUtilities;
 import com.mhschmieder.fxconvertertoolkit.svg.SvgExportUtilities;
-
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
@@ -48,6 +45,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 /**
  * {@code FxConverterDemoStage} is an example of a JavaFX {@link Stage} whose

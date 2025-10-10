@@ -31,10 +31,6 @@
  */
 package com.mhschmieder.fxconvertertoolkit.dxf;
 
-import java.awt.geom.AffineTransform;
-
-import org.jfxconverter.utils.JFXShapeUtilities;
-
 import com.mhschmieder.fxdxfconverter.DxfShapeGroup;
 import com.mhschmieder.fxdxfparser.physics.DxfDistanceUnit;
 import com.mhschmieder.fxdxfparser.reader.DxfLoader;
@@ -42,12 +38,14 @@ import com.mhschmieder.fxgraphicstoolkit.paint.ColorUtilities;
 import com.mhschmieder.graphicstoolkit.DrawMode;
 import com.mhschmieder.graphicstoolkit.shape.AttributedShapeContainer;
 import com.mhschmieder.physicstoolkit.DistanceUnit;
-
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Shape;
+import org.jfxconverter.utils.JFXShapeUtilities;
+
+import java.awt.geom.AffineTransform;
 
 /**
  * This is a utility class for dealing with conversions of information in the

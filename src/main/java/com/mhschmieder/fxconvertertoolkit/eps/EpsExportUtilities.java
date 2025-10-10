@@ -31,22 +31,20 @@
  */
 package com.mhschmieder.fxconvertertoolkit.eps;
 
+import com.mhschmieder.epstoolkit.EpsDocument;
+import com.mhschmieder.epstoolkit.graphics.EpsGraphics2D;
+import com.mhschmieder.epstoolkit.graphics.EpsRenderingHints;
+import com.mhschmieder.graphicstoolkit.color.ColorMode;
+import javafx.geometry.Bounds;
+import javafx.print.Paper;
+import javafx.scene.Node;
+import org.jfxconverter.JFXConverter;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-
-import org.jfxconverter.JFXConverter;
-
-import com.mhschmieder.epstoolkit.EpsDocument;
-import com.mhschmieder.epstoolkit.graphics.EpsGraphics2D;
-import com.mhschmieder.epstoolkit.graphics.EpsRenderingHints;
-import com.mhschmieder.graphicstoolkit.color.ColorMode;
-
-import javafx.geometry.Bounds;
-import javafx.print.Paper;
-import javafx.scene.Node;
 
 /**
  * {@code EpsExportUtilities} is a utility class for methods that export a
