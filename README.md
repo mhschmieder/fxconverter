@@ -1,5 +1,6 @@
-# FxConverterToolkit
-FxConverterToolkit is a toolkit for converting JavaFX based graphics and GUI elements to various vector graphics output formats such as EPS, SVG and PDF, via intermediary transcoding to AWT using the excellent JFXConverter library by Hervé Girod, which allows one to connect legacy AWT-based Java libraries to JavaFX application elements.
+# FxDxfImport
+
+The FxDxfImport library is a toolkit for converting JavaFX based graphics and GUI elements to various vector graphics output formats such as EPS, SVG and PDF, via intermediary transcoding to AWT using the excellent JFXConverter library by Hervé Girod, which allows one to connect legacy AWT-based Java libraries to JavaFX application elements.
 
 ALERT: Please note that there seem to have been some recent changes to the artifact labeling of several of the legacy Java 8 versions of JFreeOrg's libraries, but I won't have time to update my POM's and/or API calls in this library for at least a few days (as of early October 20201, when I discovered the new discrepancy).
 
