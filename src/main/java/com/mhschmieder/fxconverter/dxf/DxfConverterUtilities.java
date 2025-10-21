@@ -1,4 +1,4 @@
-/**
+/*
  * MIT License
  *
  * Copyright (c) 2020, 2025 Mark Schmieder
@@ -21,17 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * This file is part of the FxConverterToolkit Library
+ * This file is part of the FxConverter Library
  *
  * You should have received a copy of the MIT License along with the
- * FxConverterToolkit Library. If not, see
- * <https://opensource.org/licenses/MIT>.
+ * FxConverter Library. If not, see <https://opensource.org/licenses/MIT>.
  *
- * Project: https://github.com/mhschmieder/fxconvertertoolkit
+ * Project: https://github.com/mhschmieder/fxconverter
  */
-package com.mhschmieder.fxconvertertoolkit.dxf;
+package com.mhschmieder.fxconverter.dxf;
 
-import com.mhschmieder.fxdxfconverter.DxfShapeGroup;
+import com.mhschmieder.fxdxfimport.DxfShapeGroup;
 import com.mhschmieder.fxdxfparser.physics.DxfDistanceUnit;
 import com.mhschmieder.fxdxfparser.reader.DxfLoader;
 import com.mhschmieder.fxgraphicstoolkit.paint.ColorUtilities;

@@ -1,7 +1,7 @@
-/**
+/*
  * MIT License
  *
- * Copyright (c) 2020, 2022 Mark Schmieder
+ * Copyright (c) 2020, 2025 Mark Schmieder
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,21 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * This file is part of the FxConverterToolkit Library
+ * This file is part of the FxConverter Library
  *
  * You should have received a copy of the MIT License along with the
- * FxConverterToolkit Library. If not, see
- * <https://opensource.org/licenses/MIT>.
+ * FxConverter Library. If not, see <https://opensource.org/licenses/MIT>.
  *
- * Project: https://github.com/mhschmieder/fxconvertertoolkit
+ * Project: https://github.com/mhschmieder/fxconverter
  */
 /**
- * This package contains the FxConverterToolkit Library's export protocols (via
- * basic and advanced export interfaces), and utilities for wrapping output
- * writers with PDF as the targeted device.
+ * This package contains a demo app for how to use the FxConverter Library.
  *
  * @version 1.0
  *
  * @author Mark Schmieder
  */
-package com.mhschmieder.fxconvertertoolkit.pdf;
+package com.mhschmieder.fxconverter.demo;

@@ -1,4 +1,4 @@
-/**
+/*
  * MIT License
  *
  * Copyright (c) 2020, 2025 Mark Schmieder
@@ -21,72 +21,75 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * This file is part of the FxConverterToolkit Library
+ * This file is part of the FxConverter Library
  *
  * You should have received a copy of the MIT License along with the
- * FxConverterToolkit Library. If not, see
- * <https://opensource.org/licenses/MIT>.
+ * FxConverter Library. If not, see <https://opensource.org/licenses/MIT>.
  *
- * Project: https://github.com/mhschmieder/fxconvertertoolkit
+ * Project: https://github.com/mhschmieder/fxconverter
  */
-package com.mhschmieder.fxconvertertoolkit.svg;
+package com.mhschmieder.fxconverter.pdf;
 
 import com.mhschmieder.graphicstoolkit.GraphicsUtilities;
 import com.mhschmieder.graphicstoolkit.color.ColorMode;
+import com.orsonpdf.PDFDocument;
+import com.orsonpdf.PDFGraphics2D;
+import com.orsonpdf.PDFHints;
+import com.orsonpdf.Page;
 import javafx.geometry.Bounds;
 import javafx.print.Paper;
 import javafx.scene.Node;
-import org.apache.commons.math3.util.FastMath;
-import org.jfree.graphics2d.svg.SVGGraphics2D;
-import org.jfree.graphics2d.svg.SVGHints;
 import org.jfxconverter.JFXConverter;
 
-import java.io.BufferedWriter;
+import java.awt.geom.Rectangle2D;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.io.OutputStream;
 
 /**
- * {@code SvgExportUtilities} is a utility class for methods that export a
- * JavaFX Scene Graph {@link Node} to an SVG Document via transcoding to AWT
- * using {@link JFXConverter} as a wrapper for {@link SVGGraphics2D}.
+ * {@code PdfExportUtilities} is a utility class for methods that export a
+ * JavaFX Scene Graph {@link Node} to a PDF Document via transcoding to AWT
+ * using {@link JFXConverter} as a wrapper for {@link PDFGraphics2D}.
  *
  * @version 1.0
  *
  * @author Mark Schmieder
  */
-public final class SvgExportUtilities {
+public final class PdfExportUtilities {
 
     /**
      * The default constructor is disabled, as this is a static utilities class.
      */
-    private SvgExportUtilities() {}
+    private PdfExportUtilities() {}
 
     /**
-     * Creates the SVG Document corresponding to the {@link Node}, and writes it
-     * to the provided {@link File}, using UTF-8 encoding due to the need to
-     * handle locale sensitive characters for the SVG Title and content.
+     * Creates the PDF Document corresponding to the {@link Node}, and writes it
+     * to the provided {@link File}, using UTF-16 encoding due to the need to
+     * handle locale sensitive characters for the PDF Title and content.
      * <p>
      * This minimally specified entry point defaults to North American Letter
      * as the target page paper size and orientation, for clients that don't
      * want to bother specifying it or querying it either from the user or the
      * current Page Layout. It also presumes that RGB output is wanted, and
-     * vectorized text (especially so that rotated text is rotated in SVG).
+     * vectorized text (especially so that rotated text is rotated in PDF).
      *
      * @param file
-     *            The {@link File} destination for writing the SVG content
+     *            The {@link File} destination for writing the PDF content
      * @param node
-     *            The {@link Node} to convert to AWT and then export to SVG
+     *            The {@link Node} to convert to AWT and then export to PDF
      * @param title
-     *            The {@link String} to use as the SVG Document's title
+     *            The {@link String} to use as the PDF Document's title
+     * @param author
+     *            The {@link String} to use as the PDF Document's author
      * @return The status of whether SVG Document creation succeeded or not
      *
      * @since 1.0
      */
-    public static boolean createDocument( final File file, 
-                                          final Node node, 
-                                          final String title ) {
+    public static boolean createDocument( final File file,
+                                          final Node node,
+                                          final String title,
+                                          final String author ) {
         // Use North American Letter as the target page paper size and page
         // orientation. There are no limits on allowed values; units are points
         // (1/72 inch) but it is common to specify Letter Size and then convert.
@@ -96,6 +99,7 @@ public final class SvgExportUtilities {
         final boolean fileSaved = createDocument( file,
                                                   node,
                                                   title,
+                                                  author,
                                                   pageWidth,
                                                   pageHeight,
                                                   ColorMode.RGB,
@@ -105,63 +109,59 @@ public final class SvgExportUtilities {
     }
 
     /**
-     * Creates the SVG Document corresponding to the {@link Node}, and writes it
-     * to the provided {@link File}, using UTF-8 encoding due to the need to
-     * handle locale sensitive characters for the SVG Title and content.
+     * Creates the PDF Document corresponding to the {@link Node}, and writes it
+     * to the provided {@link File}, using UTF-16 encoding due to the need to
+     * handle locale sensitive characters for the PDF Title and content.
      * <p>
-     * Although JFreeSVG supports various units, we use points here just to be
-     * consistent with the less flexible EpsToolkit and OrsonPDF exporters.
-     * <p>
-     * Note that the Color Mode isn't used yet, until JFreeSVG supports it.
+     * Note that the Color Mode isn't used yet, until JFreePDF supports it.
      *
      * @param file
-     *            The {@link File} destination for writing the SVG content
+     *            The {@link File} destination for writing the PDF content
      * @param node
-     *            The {@link Node} to convert to AWT and then export to SVG
+     *            The {@link Node} to convert to AWT and then export to PDF
      * @param title
-     *            The {@link String} to use as the SVG Document's title
+     *            The {@link String} to use as the PDF Document's title
+     * @param author
+     *            The {@link String} to use as the PDF Document's author
      * @param pageWidth
      *            The target page width, usually in points (1/72 inch)
      * @param pageHeight
      *            The target page height, usually in points (1/72 inch)
      * @param colorMode
-     *            The {@link ColorMode} to use, compatible with SVG specs
+     *            The {@link ColorMode} to use, compatible with PDF specs
      * @param useVectorizedText
      *            Set to {@code true} if Vectorized Text Mode is desired;
      *            {@code false} otherwise (that is, if text is to be rendered as
      *            strings, sometimes referred to as Basic Text Mode)
-     * @return The status of whether SVG Document creation succeeded or not
+     * @return The status of whether this PDF export succeeded or not
      *
      * @since 1.0
      */
     public static boolean createDocument( final File file,
                                           final Node node,
                                           final String title,
+                                          final String author,
                                           final double pageWidth,
                                           final double pageHeight,
                                           final ColorMode colorMode,
                                           final boolean useVectorizedText ) {
         boolean fileSaved = false;
 
-        // Using a safe try-with-resources clause, chain a BufferedWriter to an
-        // OutputStreamWriter to a FileOutputStream using UTF-8, for better
+        // Using a safe try-with-resources clause, chain a BufferedOutputStream
+        // to a FileOutputStream using the former output wrapper's default
+        // UTF-16 encoding (which also matches PDF's default), for better
         // performance and to guarantee platform-independence of newlines and
-        // overall system-neutrality and locale-sensitivity of text data. As SVG
-        // supports both UTF-8 and UTF-16 (which reference the same Unicode
-        // specs), and as UTF-8 is more efficient and byte-for-byte identical
-        // when dealing with documents that only contain characters that can be
-        // represented by non-Unicode 7-bit or 8-bit formats (such as US-ASCII),
-        // if is preferable to use a {@link OutputStreamWriter} set to UTF-8
-        // encoding instead of {@link FileWriter} that can only write to UTF-16.
+        // overall system-neutrality and locale-sensitivity of text data. As
+        // JFreePDF returns the entire file contents as a byte array, we must
+        // use {@link BufferedOutputStream} instead of {@link FileWriter}.
         try ( final FileOutputStream fileOutputStream = new FileOutputStream( file );
-                final OutputStreamWriter outputStreamWriter =
-                                                            new OutputStreamWriter( fileOutputStream,
-                                                                                    "UTF-8" );
-                final BufferedWriter bufferedWriter = new BufferedWriter( outputStreamWriter ) ) {
-            // Write the SVG contents indirectly via JFXConverter.
-            fileSaved = createDocument( bufferedWriter,
+                final BufferedOutputStream bufferedOutputStream =
+                                                                new BufferedOutputStream( fileOutputStream ) ) {
+            // Write the PDF contents indirectly via JFXConverter.
+            fileSaved = createDocument( bufferedOutputStream,
                                         node,
                                         title,
+                                        author,
                                         pageWidth,
                                         pageHeight,
                                         colorMode,
@@ -175,39 +175,38 @@ public final class SvgExportUtilities {
     }
 
     /**
-     * Creates the SVG Document corresponding to the {@link Node}, and writes it
-     * to the provided {@link Writer} (usually a Character Stream based
-     * {@link OutputStreamWriter} class) using JFreeSVG.
+     * Creates the PDF Document corresponding to the {@link Node}, and writes it
+     * to the provided {@link OutputStream} using JFreePDF.
      * <p>
-     * Although JFreeSVG supports various units, we use points here just to be
-     * consistent with the less flexible EpsToolkit and OrsonPDF exporters.
-     * <p>
-     * Note that the Color Mode isn't used yet, until JFreeSVG supports it.
+     * Note that the Color Mode isn't used yet, until JFreePDF supports it.
      *
-     * @param writer
-     *            The wrapped {@link Writer} for channeling the SVG content
+     * @param outputStream
+     *            The wrapped {@link OutputStream} for channeling the PDF
+     *            content
      * @param node
-     *            The {@link Node} to convert to AWT and then export to SVG
+     *            The {@link Node} to convert to AWT and then export to PDF
      * @param title
-     *            The {@link String} to use as the SVG Document's title
+     *            The {@link String} to use as the PDF Document's title
+     * @param author
+     *            The {@link String} to use as the PDF Document's author
      * @param pageWidth
      *            The target page width, usually in points (1/72 inch)
      * @param pageHeight
      *            The target page height, usually in points (1/72 inch)
      * @param colorMode
-     *            The {@link ColorMode} to use, compatible with SVG specs
+     *            The {@link ColorMode} to use, compatible with PDF specs
      * @param useVectorizedText
      *            Set to {@code true} if Vectorized Text Mode is desired;
      *            {@code false} otherwise (that is, if text is to be rendered as
      *            strings, sometimes referred to as Basic Text Mode)
-     * @return The status of whether SVG Document creation succeeded or not
+     * @return The status of whether this PDF export succeeded or not
      *
      * @since 1.0
      */
-    @SuppressWarnings("nls")
-    public static boolean createDocument( final Writer writer,
+    public static boolean createDocument( final OutputStream outputStream,
                                           final Node node,
                                           final String title,
+                                          final String author,
                                           final double pageWidth,
                                           final double pageHeight,
                                           final ColorMode colorMode,
@@ -225,32 +224,34 @@ public final class SvgExportUtilities {
         final double maxX = bounds.getMaxX();
         final double maxY = bounds.getMaxY();
 
-        // Get the Graphics Context wrapper for drawing the SVG content.
-        //
-        // As JFreeSVG only supports integer precision bounds, we round up for
-        // the canvas size, so that nothing gets clipped during higher-precision
-        // floating-point transforms of the graphics transcoding.
-        final SVGGraphics2D svgGraphics = new SVGGraphics2D( ( int ) FastMath.ceil( pageWidth ),
-                                                             ( int ) FastMath.ceil( pageHeight ) );
+        // Create a new PDF Document.
+        final PDFDocument document = new PDFDocument();
+
+        // Write the file title for the PDF Document (null permitted).
+        document.setTitle( title );
+
+        // Write the file author to the PDF Document (null permitted).
+        document.setAuthor( author );
+
+        // Create a new PDF Page, and add it to the PDF Document.
+        final Page page = document
+                .createPage( new Rectangle2D.Double( 0.0d, 0.0d, pageWidth, pageHeight ) );
+
+        // Get the Graphics Context wrapper for drawing the PDF content.
+        final PDFGraphics2D pdfGraphics = page.getGraphics2D();
 
         // Vectorize the text, to avoid missing fonts and to allow more
         // flexibility in how to work with text in downstream applications.
         final Object textRenderingHint = useVectorizedText
-            ? SVGHints.VALUE_DRAW_STRING_TYPE_VECTOR
-            : SVGHints.VALUE_DRAW_STRING_TYPE_STANDARD;
-        svgGraphics.setRenderingHint( SVGHints.KEY_DRAW_STRING_TYPE, textRenderingHint );
-
-        // Make a default Title if none was provided, or if empty.
-        final String svgTitle =
-                              ( ( title == null ) || title.isEmpty() ) ? "The SVG Document" : title;
-        svgGraphics.setRenderingHint( SVGHints.KEY_ELEMENT_TITLE, svgTitle );
+            ? PDFHints.VALUE_DRAW_STRING_TYPE_VECTOR
+            : PDFHints.VALUE_DRAW_STRING_TYPE_STANDARD;
+        pdfGraphics.setRenderingHint( PDFHints.KEY_DRAW_STRING_TYPE, textRenderingHint );
 
         // Calculate and apply a global transform for all of the AWT transcoding
-        // from source coordinates to SVG-oriented page coordinates.
+        // from source coordinates to PDF-oriented page coordinates.
         //
-        // SVG starts at the top left corner, unlike EPS, PDF and PostScript.
-        // This makes it more like Java2D, and more like screen addressing.
-        GraphicsUtilities.applySourceToDestinationTransform( svgGraphics,
+        // PDF starts at the bottom left corner, like EPS and PostScript.
+        GraphicsUtilities.applySourceToDestinationTransform( pdfGraphics,
                                                              minX,
                                                              minY,
                                                              maxX,
@@ -259,15 +260,15 @@ public final class SvgExportUtilities {
                                                              pageHeight );
 
         try {
-            // Write the SVG contents to memory indirectly via JFXConverter.
+            // Write the PDF contents to memory indirectly via JFXConverter.
             final JFXConverter converter = new JFXConverter();
-            converter.convert( svgGraphics, node );
+            converter.convert( pdfGraphics, node );
 
-            // Get the full SVG Document (header, content, dictionary, etc.).
-            final String svgDocument = svgGraphics.getSVGDocument();
+            // Get the full PDF Document as an encoded byte array.
+            final byte[] pdfBytes = document.getPDFBytes();
 
-            // Save the SVG Document from memory to disc.
-            writer.write( svgDocument );
+            // Save the PDF Document from memory to disc.
+            outputStream.write( pdfBytes );
 
             // If we got this far without exceptions, the file was saved.
             fileSaved = true;
@@ -278,4 +279,5 @@ public final class SvgExportUtilities {
 
         return fileSaved;
     }
-}
+
+}// class PdfExportUtilities

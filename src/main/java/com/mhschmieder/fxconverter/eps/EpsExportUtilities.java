@@ -1,7 +1,7 @@
-/**
+/*
  * MIT License
  *
- * Copyright (c) 2020, 2022 Mark Schmieder
+ * Copyright (c) 2020, 2025 Mark Schmieder
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * This file is part of the FxConverterToolkit Library
+ * This file is part of the FxConverter Library
  *
  * You should have received a copy of the MIT License along with the
- * FxConverterToolkit Library. If not, see
- * <https://opensource.org/licenses/MIT>.
+ * FxConverter Library. If not, see <https://opensource.org/licenses/MIT>.
  *
- * Project: https://github.com/mhschmieder/fxconvertertoolkit
+ * Project: https://github.com/mhschmieder/fxconverter
  */
-package com.mhschmieder.fxconvertertoolkit.eps;
+package com.mhschmieder.fxconverter.eps;
 
 import com.mhschmieder.epstoolkit.EpsDocument;
 import com.mhschmieder.epstoolkit.graphics.EpsGraphics2D;

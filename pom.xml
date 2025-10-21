@@ -6,12 +6,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mhschmieder</groupId>
-	<artifactId>fxconvertertoolkit</artifactId>
+	<artifactId>fxconverter</artifactId>
 	<version>0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>fxconvertertoolkit</name>
-	<url>https://github.com/mhschmieder/fxconvertertoolkit</url>
+	<name>fxconverter</name>
+	<url>https://github.com/mhschmieder/fxconverter</url>
 	<description>A toolkit for converting JavaFX based graphics to various vector graphics output formats such as EPS, SVG and PDF.</description>
 
 	<licenses>
@@ -23,9 +23,9 @@
 	</licenses>
 
 	<scm>
-		<url>https://github.com/mhschmieder/fxconvertertoolkit</url>
-		<connection>scm:git:git://github.com/mhschmieder/fxconvertertoolkit.git</connection>
-		<developerConnection>scm:git:git@github.com:mhschmieder/fxconvertertoolkit.git</developerConnection>
+		<url>https://github.com/mhschmieder/fxconverter</url>
+		<connection>scm:git:git://github.com/mhschmieder/fxconverter.git</connection>
+		<developerConnection>scm:git:git@github.com:mhschmieder/fxconverter.git</developerConnection>
 	</scm>
 
 	<developers>
@@ -106,7 +106,7 @@
         </dependency>
 		<dependency>
 			<groupId>com.mhschmieder</groupId>
-			<artifactId>fxdxfconverter</artifactId>
+			<artifactId>fxdxfimport</artifactId>
 			<version>0.1-SNAPSHOT</version>
 		</dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->

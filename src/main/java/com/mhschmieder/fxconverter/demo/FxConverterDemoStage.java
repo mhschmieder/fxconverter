@@ -1,7 +1,7 @@
-/**
+/*
  * MIT License
  *
- * Copyright (c) 2020, 2022 Mark Schmieder
+ * Copyright (c) 2020, 2025 Mark Schmieder
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,19 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * This file is part of the FxConverterToolkit Library
+ * This file is part of the FxConverter Library
  *
  * You should have received a copy of the MIT License along with the
- * FxConverterToolkit Library. If not, see
- * <https://opensource.org/licenses/MIT>.
+ * FxConverter Library. If not, see <https://opensource.org/licenses/MIT>.
  *
- * Project: https://github.com/mhschmieder/fxconvertertoolkit
+ * Project: https://github.com/mhschmieder/fxconverter
  */
-package com.mhschmieder.fxconvertertoolkit.demo;
+package com.mhschmieder.fxconverter.demo;
 
-import com.mhschmieder.fxconvertertoolkit.eps.EpsExportUtilities;
-import com.mhschmieder.fxconvertertoolkit.pdf.PdfExportUtilities;
-import com.mhschmieder.fxconvertertoolkit.svg.SvgExportUtilities;
+import com.mhschmieder.fxconverter.eps.EpsExportUtilities;
+import com.mhschmieder.fxconverter.pdf.PdfExportUtilities;
+import com.mhschmieder.fxconverter.svg.SvgExportUtilities;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
@@ -125,7 +124,7 @@ public final class FxConverterDemoStage extends Stage {
         final Scene scene = new Scene( root, 420d, 280d, Color.WHITE );
 
         // Set a generic frame title, and allow for resizing due to sloppy code.
-        setTitle( "FxConverterToolkit Demo Application" ); //$NON-NLS-1$
+        setTitle( "FxConverter Demo Application" ); //$NON-NLS-1$
         setResizable( true );
 
         // We may need to set the tool bar height as well (it may be too tall).
