@@ -31,10 +31,10 @@
 /**
  * This package contains the FxConverter Library's export protocols (via
  * basic and advanced export interfaces), and utilities for wrapping output
- * writers with SVG as the targeted device.
+ * writers with PPT as the targeted device.
  *
  * @version 1.0
  *
  * @author Mark Schmieder
  */
-package com.mhschmieder.fxconverter.svg;
+package com.mhschmieder.fxvectorexport.ppt;

@@ -29,11 +29,12 @@
  * Project: https://github.com/mhschmieder/fxconverter
  */
 /**
- * This package contains top-level utility classes for the FxConverter
- * Library.
+ * This package contains the FxConverter Library's export protocols (via
+ * basic and advanced export interfaces), and utilities for wrapping output
+ * writers with EPS as the targeted device.
  *
  * @version 1.0
  *
  * @author Mark Schmieder
  */
-package com.mhschmieder.fxconverter;
+package com.mhschmieder.fxvectorexport.eps;

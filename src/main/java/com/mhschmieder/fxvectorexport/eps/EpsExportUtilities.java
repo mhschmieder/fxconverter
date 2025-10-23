@@ -28,12 +28,12 @@
  *
  * Project: https://github.com/mhschmieder/fxconverter
  */
-package com.mhschmieder.fxconverter.eps;
+package com.mhschmieder.fxvectorexport.eps;
 
-import com.mhschmieder.epstoolkit.EpsDocument;
-import com.mhschmieder.epstoolkit.graphics.EpsGraphics2D;
-import com.mhschmieder.epstoolkit.graphics.EpsRenderingHints;
-import com.mhschmieder.graphicstoolkit.color.ColorMode;
+import com.mhschmieder.jepswriter.EpsDocument;
+import com.mhschmieder.jepswriter.graphics.EpsGraphics2D;
+import com.mhschmieder.jepswriter.graphics.EpsRenderingHints;
+import com.mhschmieder.jgraphics.color.ColorMode;
 import javafx.geometry.Bounds;
 import javafx.print.Paper;
 import javafx.scene.Node;

@@ -37,4 +37,4 @@
  *
  * @author Mark Schmieder
  */
-package com.mhschmieder.fxconverter.pdf;
+package com.mhschmieder.fxvectorexport.pdf;

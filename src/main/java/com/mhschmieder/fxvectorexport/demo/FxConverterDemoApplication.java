@@ -28,7 +28,7 @@
  *
  * Project: https://github.com/mhschmieder/fxconverter
  */
-package com.mhschmieder.fxconverter.demo;
+package com.mhschmieder.fxvectorexport.demo;
 
 import javafx.application.Application;
 import javafx.application.Platform;

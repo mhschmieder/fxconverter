@@ -28,10 +28,10 @@
  *
  * Project: https://github.com/mhschmieder/fxconverter
  */
-package com.mhschmieder.fxconverter.pdf;
+package com.mhschmieder.fxvectorexport.pdf;
 
-import com.mhschmieder.graphicstoolkit.GraphicsUtilities;
-import com.mhschmieder.graphicstoolkit.color.ColorMode;
+import com.mhschmieder.jgraphics.GraphicsUtilities;
+import com.mhschmieder.jgraphics.color.ColorMode;
 import com.orsonpdf.PDFDocument;
 import com.orsonpdf.PDFGraphics2D;
 import com.orsonpdf.PDFHints;

@@ -28,10 +28,10 @@
  *
  * Project: https://github.com/mhschmieder/fxconverter
  */
-package com.mhschmieder.fxconverter.svg;
+package com.mhschmieder.fxvectorexport.svg;
 
-import com.mhschmieder.graphicstoolkit.GraphicsUtilities;
-import com.mhschmieder.graphicstoolkit.color.ColorMode;
+import com.mhschmieder.jgraphics.GraphicsUtilities;
+import com.mhschmieder.jgraphics.color.ColorMode;
 import javafx.geometry.Bounds;
 import javafx.print.Paper;
 import javafx.scene.Node;

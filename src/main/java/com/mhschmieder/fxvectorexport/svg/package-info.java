@@ -29,10 +29,12 @@
  * Project: https://github.com/mhschmieder/fxconverter
  */
 /**
- * This package contains a demo app for how to use the FxConverter Library.
+ * This package contains the FxConverter Library's export protocols (via
+ * basic and advanced export interfaces), and utilities for wrapping output
+ * writers with SVG as the targeted device.
  *
  * @version 1.0
  *
  * @author Mark Schmieder
  */
-package com.mhschmieder.fxconverter.demo;
+package com.mhschmieder.fxvectorexport.svg;

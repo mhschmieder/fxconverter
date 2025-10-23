@@ -28,7 +28,7 @@
  *
  * Project: https://github.com/mhschmieder/fxconverter
  */
-package com.mhschmieder.fxconverter;
+package com.mhschmieder.fxvectorexport;
 
 import javafx.scene.shape.Shape;
 import org.jfxconverter.utils.JFXShapeUtilities;

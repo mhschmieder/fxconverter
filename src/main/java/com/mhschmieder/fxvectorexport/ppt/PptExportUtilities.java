@@ -28,7 +28,7 @@
  *
  * Project: https://github.com/mhschmieder/fxconverter
  */
-package com.mhschmieder.fxconverter.ppt;
+package com.mhschmieder.fxvectorexport.ppt;
 
 import javafx.geometry.Bounds;
 import javafx.scene.Node;

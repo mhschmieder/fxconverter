@@ -28,14 +28,14 @@
  *
  * Project: https://github.com/mhschmieder/fxconverter
  */
-package com.mhschmieder.fxconverter.dxf;
+package com.mhschmieder.fxvectorexport.dxf;
 
 import com.mhschmieder.fxdxfimport.DxfShapeGroup;
 import com.mhschmieder.fxdxfparser.physics.DxfDistanceUnit;
 import com.mhschmieder.fxdxfparser.reader.DxfLoader;
-import com.mhschmieder.fxgraphicstoolkit.paint.ColorUtilities;
-import com.mhschmieder.graphicstoolkit.DrawMode;
-import com.mhschmieder.graphicstoolkit.shape.AttributedShapeContainer;
+import com.mhschmieder.fxgraphics.paint.ColorUtilities;
+import com.mhschmieder.jgraphics.DrawMode;
+import com.mhschmieder.jgraphics.shape.AttributedShapeContainer;
 import com.mhschmieder.jphysics.DistanceUnit;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;

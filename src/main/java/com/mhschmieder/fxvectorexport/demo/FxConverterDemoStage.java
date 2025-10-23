@@ -28,11 +28,11 @@
  *
  * Project: https://github.com/mhschmieder/fxconverter
  */
-package com.mhschmieder.fxconverter.demo;
+package com.mhschmieder.fxvectorexport.demo;
 
-import com.mhschmieder.fxconverter.eps.EpsExportUtilities;
-import com.mhschmieder.fxconverter.pdf.PdfExportUtilities;
-import com.mhschmieder.fxconverter.svg.SvgExportUtilities;
+import com.mhschmieder.fxvectorexport.eps.EpsExportUtilities;
+import com.mhschmieder.fxvectorexport.pdf.PdfExportUtilities;
+import com.mhschmieder.fxvectorexport.svg.SvgExportUtilities;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
