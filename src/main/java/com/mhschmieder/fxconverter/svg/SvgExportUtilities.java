@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020, 2025 Mark Schmieder
+ * Copyright (c) 2020, 2025, Mark Schmieder. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -92,15 +92,15 @@ public final class SvgExportUtilities {
         final Paper paperTarget = Paper.NA_LETTER;
         final double pageWidth = paperTarget.getWidth();
         final double pageHeight = paperTarget.getHeight();
-        final boolean fileSaved = createDocument( file,
-                                                  node,
-                                                  title,
-                                                  pageWidth,
-                                                  pageHeight,
-                                                  ColorMode.RGB,
-                                                  true );
 
-        return fileSaved;
+        return createDocument(
+                file,
+                node,
+                title,
+                pageWidth,
+                pageHeight,
+                ColorMode.RGB,
+                true );
     }
 
     /**
@@ -153,10 +153,11 @@ public final class SvgExportUtilities {
         // if is preferable to use a {@link OutputStreamWriter} set to UTF-8
         // encoding instead of {@link FileWriter} that can only write to UTF-16.
         try ( final FileOutputStream fileOutputStream = new FileOutputStream( file );
-                final OutputStreamWriter outputStreamWriter =
-                                                            new OutputStreamWriter( fileOutputStream,
-                                                                                    "UTF-8" );
-                final BufferedWriter bufferedWriter = new BufferedWriter( outputStreamWriter ) ) {
+                final OutputStreamWriter outputStreamWriter
+                        = new OutputStreamWriter(
+                                fileOutputStream, "UTF-8" );
+                final BufferedWriter bufferedWriter = new BufferedWriter(
+                        outputStreamWriter ) ) {
             // Write the SVG contents indirectly via JFXConverter.
             fileSaved = createDocument( bufferedWriter,
                                         node,

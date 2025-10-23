@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020, 2025 Mark Schmieder
+ * Copyright (c) 2020, 2025, Mark Schmieder. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -96,16 +96,16 @@ public final class PdfExportUtilities {
         final Paper paperTarget = Paper.NA_LETTER;
         final double pageWidth = paperTarget.getWidth();
         final double pageHeight = paperTarget.getHeight();
-        final boolean fileSaved = createDocument( file,
-                                                  node,
-                                                  title,
-                                                  author,
-                                                  pageWidth,
-                                                  pageHeight,
-                                                  ColorMode.RGB,
-                                                  true );
 
-        return fileSaved;
+        return createDocument(
+                file,
+                node,
+                title,
+                author,
+                pageWidth,
+                pageHeight,
+                ColorMode.RGB,
+                true );
     }
 
     /**
