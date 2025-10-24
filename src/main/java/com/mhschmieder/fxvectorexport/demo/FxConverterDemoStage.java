@@ -31,7 +31,7 @@
 package com.mhschmieder.fxvectorexport.demo;
 
 import com.mhschmieder.fxvectorexport.eps.EpsExportUtilities;
-import com.mhschmieder.fxvectorexport.pdf.PdfExportUtilities;
+import com.mhschmieder.fxvectorexport.pdf.pdfreportUtilities;
 import com.mhschmieder.fxvectorexport.svg.SvgExportUtilities;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -102,7 +102,7 @@ public final class FxConverterDemoStage extends Stage {
     private void initStage() {
         // Add a quick-and-dirty toolbar just to test the export feature.
         final Button epsExportButton = new Button( "Export to EPS" ); //$NON-NLS-1$
-        final Button pdfExportButton = new Button( "Export to PDF" ); //$NON-NLS-1$
+        final Button pdfreportButton = new Button( "Export to PDF" ); //$NON-NLS-1$
         final Button svgExportButton = new Button( "Export to SVG" ); //$NON-NLS-1$
         final ToolBar exportToolBar = new ToolBar();
         final Region spacer1 = new Region();
@@ -110,7 +110,7 @@ public final class FxConverterDemoStage extends Stage {
         HBox.setHgrow( spacer1, Priority.ALWAYS );
         HBox.setHgrow( spacer2, Priority.ALWAYS );
         exportToolBar.getItems()
-                .addAll( epsExportButton, spacer1, pdfExportButton, spacer2, svgExportButton );
+                .addAll( epsExportButton, spacer1, pdfreportButton, spacer2, svgExportButton );
 
         // Make the primary layout element, and add it to the content pane.
         converterDemoPane = new FxConverterDemoPane();
@@ -151,7 +151,7 @@ public final class FxConverterDemoStage extends Stage {
         } );
 
         // Detect button clicks on the Export PDF Button.
-        pdfExportButton.setOnAction( value -> {
+        pdfreportButton.setOnAction( value -> {
             // This is a very rudimentary and unsafe example of file chooser
             // usage, until I have time to put together a JavaFX framework
             // library that enforces best practices.
@@ -159,7 +159,7 @@ public final class FxConverterDemoStage extends Stage {
             final File file = fileChooser.showSaveDialog( this );
             if ( file != null ) {
                 // Transcode this window to AWT to export to PDF.
-                PdfExportUtilities.createDocument( file,
+                pdfreportUtilities.createDocument( file,
                                                    converterDemoPane,
                                                    "Fake PDF Title", //$NON-NLS-1$
                                                    "Saved from FxConverterDemoApplication" ); //$NON-NLS-1$

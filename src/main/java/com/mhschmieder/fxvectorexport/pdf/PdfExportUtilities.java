@@ -48,7 +48,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 /**
- * {@code PdfExportUtilities} is a utility class for methods that export a
+ * {@code pdfreportUtilities} is a utility class for methods that export a
  * JavaFX Scene Graph {@link Node} to a PDF Document via transcoding to AWT
  * using {@link JFXConverter} as a wrapper for {@link PDFGraphics2D}.
  *
@@ -56,12 +56,12 @@ import java.io.OutputStream;
  *
  * @author Mark Schmieder
  */
-public final class PdfExportUtilities {
+public final class pdfreportUtilities {
 
     /**
      * The default constructor is disabled, as this is a static utilities class.
      */
-    private PdfExportUtilities() {}
+    private pdfreportUtilities() {}
 
     /**
      * Creates the PDF Document corresponding to the {@link Node}, and writes it
@@ -280,4 +280,4 @@ public final class PdfExportUtilities {
         return fileSaved;
     }
 
-}// class PdfExportUtilities
+}// class pdfreportUtilities
