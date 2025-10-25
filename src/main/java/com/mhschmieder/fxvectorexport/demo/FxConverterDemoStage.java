@@ -31,7 +31,7 @@
 package com.mhschmieder.fxvectorexport.demo;
 
 import com.mhschmieder.fxvectorexport.eps.EpsExportUtilities;
-import com.mhschmieder.fxvectorexport.pdf.pdfreportUtilities;
+import com.mhschmieder.fxvectorexport.pdf.PdfReportUtilities;
 import com.mhschmieder.fxvectorexport.svg.SvgExportUtilities;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -159,7 +159,7 @@ public final class FxConverterDemoStage extends Stage {
             final File file = fileChooser.showSaveDialog( this );
             if ( file != null ) {
                 // Transcode this window to AWT to export to PDF.
-                pdfreportUtilities.createDocument( file,
+                PdfReportUtilities.createDocument( file,
                                                    converterDemoPane,
                                                    "Fake PDF Title", //$NON-NLS-1$
                                                    "Saved from FxConverterDemoApplication" ); //$NON-NLS-1$

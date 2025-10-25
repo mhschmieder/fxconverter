@@ -56,12 +56,12 @@ import java.io.OutputStream;
  *
  * @author Mark Schmieder
  */
-public final class pdfreportUtilities {
+public final class PdfReportUtilities {
 
     /**
      * The default constructor is disabled, as this is a static utilities class.
      */
-    private pdfreportUtilities() {}
+    private PdfReportUtilities() {}
 
     /**
      * Creates the PDF Document corresponding to the {@link Node}, and writes it
